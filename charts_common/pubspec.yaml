@@ -1,13 +1,13 @@
 name: charts_common
-version: 0.13.0
+version: 0.13.1
 description: A common library for charting packages.
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  collection: ^1.8.0
-  intl: "0.18.1"
+  collection: ^1.17.2
+  intl: ^0.20.0
   logging: ^1.2.0
   meta: ^1.9.1
-  vector_math: ^2.0.8
+  vector_math: ^2.1.4
