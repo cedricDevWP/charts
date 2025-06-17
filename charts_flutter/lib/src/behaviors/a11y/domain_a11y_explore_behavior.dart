@@ -13,13 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:charts_common/common.dart' as common
-    show
-        ChartBehavior,
-        DomainA11yExploreBehavior,
-        VocalizationCallback,
-        ExploreModeTrigger;
-import 'package:flutter/widgets.dart' show hashValues;
+import 'package:charts_common/common.dart' as common show ChartBehavior, DomainA11yExploreBehavior, VocalizationCallback, ExploreModeTrigger;
 import '../chart_behavior.dart' show ChartBehavior, GestureType;
 
 /// Behavior that generates semantic nodes for each domain.
@@ -46,13 +40,7 @@ class DomainA11yExploreBehavior<D> extends ChartBehavior<D> {
   /// Optionally notify the OS when explore mode is disabled.
   final String? exploreModeDisabledAnnouncement;
 
-  DomainA11yExploreBehavior._internal(
-      {this.vocalizationCallback,
-      this.exploreModeTrigger,
-      required this.desiredGestures,
-      this.minimumWidth,
-      this.exploreModeEnabledAnnouncement,
-      this.exploreModeDisabledAnnouncement});
+  DomainA11yExploreBehavior._internal({this.vocalizationCallback, this.exploreModeTrigger, required this.desiredGestures, this.minimumWidth, this.exploreModeEnabledAnnouncement, this.exploreModeDisabledAnnouncement});
 
   factory DomainA11yExploreBehavior({
     common.VocalizationCallback? vocalizationCallback,
@@ -85,12 +73,7 @@ class DomainA11yExploreBehavior<D> extends ChartBehavior<D> {
 
   @override
   common.DomainA11yExploreBehavior<D> createCommonBehavior() {
-    return new common.DomainA11yExploreBehavior<D>(
-        vocalizationCallback: vocalizationCallback,
-        exploreModeTrigger: exploreModeTrigger,
-        minimumWidth: minimumWidth,
-        exploreModeEnabledAnnouncement: exploreModeEnabledAnnouncement,
-        exploreModeDisabledAnnouncement: exploreModeDisabledAnnouncement);
+    return new common.DomainA11yExploreBehavior<D>(vocalizationCallback: vocalizationCallback, exploreModeTrigger: exploreModeTrigger, minimumWidth: minimumWidth, exploreModeEnabledAnnouncement: exploreModeEnabledAnnouncement, exploreModeDisabledAnnouncement: exploreModeDisabledAnnouncement);
   }
 
   @override
@@ -100,17 +83,16 @@ class DomainA11yExploreBehavior<D> extends ChartBehavior<D> {
   String get role => 'DomainA11yExplore-${exploreModeTrigger}';
 
   @override
-  bool operator ==(Object o) =>
-      o is DomainA11yExploreBehavior &&
-      vocalizationCallback == o.vocalizationCallback &&
-      exploreModeTrigger == o.exploreModeTrigger &&
-      minimumWidth == o.minimumWidth &&
-      exploreModeEnabledAnnouncement == o.exploreModeEnabledAnnouncement &&
-      exploreModeDisabledAnnouncement == o.exploreModeDisabledAnnouncement;
+  bool operator ==(Object o) => o is DomainA11yExploreBehavior && vocalizationCallback == o.vocalizationCallback && exploreModeTrigger == o.exploreModeTrigger && minimumWidth == o.minimumWidth && exploreModeEnabledAnnouncement == o.exploreModeEnabledAnnouncement && exploreModeDisabledAnnouncement == o.exploreModeDisabledAnnouncement;
 
   @override
   int get hashCode {
-    return hashValues(minimumWidth, vocalizationCallback, exploreModeTrigger,
-        exploreModeEnabledAnnouncement, exploreModeDisabledAnnouncement);
+    return Object.hash(
+      minimumWidth,
+      vocalizationCallback,
+      exploreModeTrigger,
+      exploreModeEnabledAnnouncement,
+      exploreModeDisabledAnnouncement,
+    );
   }
 }
