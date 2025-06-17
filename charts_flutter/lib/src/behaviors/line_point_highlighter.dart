@@ -14,14 +14,7 @@
 // limitations under the License.
 
 import 'package:collection/collection.dart' show ListEquality;
-import 'package:charts_common/common.dart' as common
-    show
-        ChartBehavior,
-        LinePointHighlighter,
-        LinePointHighlighterFollowLineType,
-        SelectionModelType,
-        SymbolRenderer;
-import 'package:flutter/widgets.dart' show hashValues;
+import 'package:charts_common/common.dart' as common show ChartBehavior, LinePointHighlighter, LinePointHighlighterFollowLineType, SelectionModelType, SymbolRenderer;
 import 'package:meta/meta.dart' show immutable;
 
 import 'chart_behavior.dart' show ChartBehavior, GestureType;
@@ -72,19 +65,10 @@ class LinePointHighlighter<D> extends ChartBehavior<D> {
   /// Renderer used to draw the highlighted points.
   final common.SymbolRenderer? symbolRenderer;
 
-  LinePointHighlighter(
-      {this.selectionModelType,
-      this.defaultRadiusPx,
-      this.radiusPaddingPx,
-      this.showHorizontalFollowLine,
-      this.showVerticalFollowLine,
-      this.dashPattern,
-      this.drawFollowLinesAcrossChart,
-      this.symbolRenderer});
+  LinePointHighlighter({this.selectionModelType, this.defaultRadiusPx, this.radiusPaddingPx, this.showHorizontalFollowLine, this.showVerticalFollowLine, this.dashPattern, this.drawFollowLinesAcrossChart, this.symbolRenderer});
 
   @override
-  common.LinePointHighlighter<D> createCommonBehavior() =>
-      new common.LinePointHighlighter<D>(
+  common.LinePointHighlighter<D> createCommonBehavior() => new common.LinePointHighlighter<D>(
         selectionModelType: selectionModelType,
         defaultRadiusPx: defaultRadiusPx,
         radiusPaddingPx: radiusPaddingPx,
@@ -103,19 +87,12 @@ class LinePointHighlighter<D> extends ChartBehavior<D> {
 
   @override
   bool operator ==(Object o) {
-    return o is LinePointHighlighter &&
-        defaultRadiusPx == o.defaultRadiusPx &&
-        radiusPaddingPx == o.radiusPaddingPx &&
-        showHorizontalFollowLine == o.showHorizontalFollowLine &&
-        showVerticalFollowLine == o.showVerticalFollowLine &&
-        selectionModelType == o.selectionModelType &&
-        new ListEquality().equals(dashPattern, o.dashPattern) &&
-        drawFollowLinesAcrossChart == o.drawFollowLinesAcrossChart;
+    return o is LinePointHighlighter && defaultRadiusPx == o.defaultRadiusPx && radiusPaddingPx == o.radiusPaddingPx && showHorizontalFollowLine == o.showHorizontalFollowLine && showVerticalFollowLine == o.showVerticalFollowLine && selectionModelType == o.selectionModelType && new ListEquality().equals(dashPattern, o.dashPattern) && drawFollowLinesAcrossChart == o.drawFollowLinesAcrossChart;
   }
 
   @override
   int get hashCode {
-    return hashValues(
+    return Object.hash(
       selectionModelType,
       defaultRadiusPx,
       radiusPaddingPx,

@@ -14,17 +14,7 @@
 // limitations under the License.
 
 import 'dart:math' show Rectangle;
-import 'package:charts_common/common.dart' as common
-    show
-        ChartBehavior,
-        LayoutViewPaintOrder,
-        RectSymbolRenderer,
-        SelectionTrigger,
-        Slider,
-        SliderListenerCallback,
-        SliderStyle,
-        SymbolRenderer;
-import 'package:flutter/widgets.dart' show hashValues;
+import 'package:charts_common/common.dart' as common show ChartBehavior, LayoutViewPaintOrder, RectSymbolRenderer, SelectionTrigger, Slider, SliderListenerCallback, SliderStyle, SymbolRenderer;
 import 'package:meta/meta.dart' show immutable;
 
 import '../chart_behavior.dart' show ChartBehavior, GestureType;
@@ -81,16 +71,7 @@ class Slider<D> extends ChartBehavior<D> {
   /// Renderer for the handle. Defaults to a rectangle.
   final common.SymbolRenderer? handleRenderer;
 
-  Slider._internal(
-      {required this.eventTrigger,
-      this.onChangeCallback,
-      this.initialDomainValue,
-      this.roleId,
-      required this.snapToDatum,
-      this.style,
-      this.handleRenderer,
-      required this.desiredGestures,
-      this.layoutPaintOrder});
+  Slider._internal({required this.eventTrigger, this.onChangeCallback, this.initialDomainValue, this.roleId, required this.snapToDatum, this.style, this.handleRenderer, required this.desiredGestures, this.layoutPaintOrder});
 
   /// Constructs a [Slider].
   ///
@@ -113,33 +94,15 @@ class Slider<D> extends ChartBehavior<D> {
   /// [layoutPaintOrder] configures the order in which the behavior should be
   /// painted. This value should be relative to LayoutPaintViewOrder.slider.
   /// (e.g. LayoutViewPaintOrder.slider + 1).
-  factory Slider(
-      {common.SelectionTrigger? eventTrigger,
-      common.SymbolRenderer? handleRenderer,
-      dynamic? initialDomainValue,
-      String? roleId,
-      common.SliderListenerCallback? onChangeCallback,
-      bool snapToDatum = false,
-      common.SliderStyle? style,
-      int layoutPaintOrder = common.LayoutViewPaintOrder.slider}) {
+  factory Slider({common.SelectionTrigger? eventTrigger, common.SymbolRenderer? handleRenderer, dynamic? initialDomainValue, String? roleId, common.SliderListenerCallback? onChangeCallback, bool snapToDatum = false, common.SliderStyle? style, int layoutPaintOrder = common.LayoutViewPaintOrder.slider}) {
     eventTrigger ??= common.SelectionTrigger.tapAndDrag;
     handleRenderer ??= new common.RectSymbolRenderer();
     // Default the handle size large enough to tap on a mobile device.
     style ??= new common.SliderStyle(handleSize: Rectangle<int>(0, 0, 20, 30));
-    return new Slider._internal(
-        eventTrigger: eventTrigger,
-        handleRenderer: handleRenderer,
-        initialDomainValue: initialDomainValue,
-        onChangeCallback: onChangeCallback,
-        roleId: roleId,
-        snapToDatum: snapToDatum,
-        style: style,
-        desiredGestures: Slider._getDesiredGestures(eventTrigger),
-        layoutPaintOrder: layoutPaintOrder);
+    return new Slider._internal(eventTrigger: eventTrigger, handleRenderer: handleRenderer, initialDomainValue: initialDomainValue, onChangeCallback: onChangeCallback, roleId: roleId, snapToDatum: snapToDatum, style: style, desiredGestures: Slider._getDesiredGestures(eventTrigger), layoutPaintOrder: layoutPaintOrder);
   }
 
-  static Set<GestureType> _getDesiredGestures(
-      common.SelectionTrigger eventTrigger) {
+  static Set<GestureType> _getDesiredGestures(common.SelectionTrigger eventTrigger) {
     final desiredGestures = new Set<GestureType>();
     switch (eventTrigger) {
       case common.SelectionTrigger.tapAndDrag:
@@ -155,21 +118,13 @@ class Slider<D> extends ChartBehavior<D> {
           ..add(GestureType.onDrag);
         break;
       default:
-        throw new ArgumentError(
-            'Slider does not support the event trigger ' + '"${eventTrigger}"');
+        throw new ArgumentError('Slider does not support the event trigger ' + '"${eventTrigger}"');
     }
     return desiredGestures;
   }
 
   @override
-  common.Slider<D> createCommonBehavior() => new common.Slider<D>(
-      eventTrigger: eventTrigger,
-      handleRenderer: handleRenderer,
-      initialDomainValue: initialDomainValue as D,
-      onChangeCallback: onChangeCallback,
-      roleId: roleId,
-      snapToDatum: snapToDatum,
-      style: style);
+  common.Slider<D> createCommonBehavior() => new common.Slider<D>(eventTrigger: eventTrigger, handleRenderer: handleRenderer, initialDomainValue: initialDomainValue as D, onChangeCallback: onChangeCallback, roleId: roleId, snapToDatum: snapToDatum, style: style);
 
   @override
   void updateCommonBehavior(common.ChartBehavior<D> commonBehavior) {}
@@ -179,20 +134,11 @@ class Slider<D> extends ChartBehavior<D> {
 
   @override
   bool operator ==(Object o) {
-    return o is Slider &&
-        eventTrigger == o.eventTrigger &&
-        handleRenderer == o.handleRenderer &&
-        initialDomainValue == o.initialDomainValue &&
-        onChangeCallback == o.onChangeCallback &&
-        roleId == o.roleId &&
-        snapToDatum == o.snapToDatum &&
-        style == o.style &&
-        layoutPaintOrder == o.layoutPaintOrder;
+    return o is Slider && eventTrigger == o.eventTrigger && handleRenderer == o.handleRenderer && initialDomainValue == o.initialDomainValue && onChangeCallback == o.onChangeCallback && roleId == o.roleId && snapToDatum == o.snapToDatum && style == o.style && layoutPaintOrder == o.layoutPaintOrder;
   }
 
   @override
   int get hashCode {
-    return hashValues(eventTrigger, handleRenderer, initialDomainValue, roleId,
-        snapToDatum, style, layoutPaintOrder);
+    return Object.hash(eventTrigger, handleRenderer, initialDomainValue, roleId, snapToDatum, style, layoutPaintOrder);
   }
 }

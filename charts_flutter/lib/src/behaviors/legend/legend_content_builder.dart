@@ -13,9 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:charts_common/common.dart' as common
-    show Legend, LegendState, SeriesLegend;
-import 'package:flutter/widgets.dart' show BuildContext, hashValues, Widget;
+import 'package:charts_common/common.dart' as common show Legend, LegendState, SeriesLegend;
+import 'package:flutter/widgets.dart' show BuildContext, Widget;
 import 'legend.dart';
 import 'legend_entry_layout.dart';
 import 'legend_layout.dart';
@@ -24,9 +23,7 @@ import 'legend_layout.dart';
 abstract class LegendContentBuilder {
   const LegendContentBuilder();
 
-  Widget build(BuildContext context, common.LegendState legendState,
-      common.Legend legend,
-      {bool showMeasures});
+  Widget build(BuildContext context, common.LegendState legendState, common.Legend legend, {bool showMeasures});
 }
 
 /// Base strategy for building a legend content widget.
@@ -44,18 +41,14 @@ abstract class BaseLegendContentBuilder implements LegendContentBuilder {
   LegendLayout get legendLayout;
 
   @override
-  Widget build(BuildContext context, common.LegendState legendState,
-      common.Legend legend,
-      {bool showMeasures = false}) {
+  Widget build(BuildContext context, common.LegendState legendState, common.Legend legend, {bool showMeasures = false}) {
     final entryWidgets = legendState.legendEntries.map((entry) {
       var isHidden = false;
       if (legend is common.SeriesLegend) {
         isHidden = legend.isSeriesHidden(entry.series.id);
       }
 
-      return legendEntryLayout.build(
-          context, entry, legend as TappableLegend, isHidden,
-          showMeasures: showMeasures);
+      return legendEntryLayout.build(context, entry, legend as TappableLegend, isHidden, showMeasures: showMeasures);
     }).toList();
 
     return legendLayout.build(context, entryWidgets);
@@ -73,20 +66,15 @@ class TabularLegendContentBuilder extends BaseLegendContentBuilder {
   final LegendEntryLayout legendEntryLayout;
   final LegendLayout legendLayout;
 
-  TabularLegendContentBuilder(
-      {LegendEntryLayout? legendEntryLayout, LegendLayout? legendLayout})
-      : this.legendEntryLayout =
-            legendEntryLayout ?? const SimpleLegendEntryLayout(),
-        this.legendLayout =
-            legendLayout ?? new TabularLegendLayout.horizontalFirst();
+  TabularLegendContentBuilder({LegendEntryLayout? legendEntryLayout, LegendLayout? legendLayout})
+      : this.legendEntryLayout = legendEntryLayout ?? const SimpleLegendEntryLayout(),
+        this.legendLayout = legendLayout ?? new TabularLegendLayout.horizontalFirst();
 
   @override
   bool operator ==(Object o) {
-    return o is TabularLegendContentBuilder &&
-        legendEntryLayout == o.legendEntryLayout &&
-        legendLayout == o.legendLayout;
+    return o is TabularLegendContentBuilder && legendEntryLayout == o.legendEntryLayout && legendLayout == o.legendLayout;
   }
 
   @override
-  int get hashCode => hashValues(legendEntryLayout, legendLayout);
+  int get hashCode => Object.hash(legendEntryLayout, legendLayout);
 }

@@ -13,16 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'package:charts_common/common.dart' as common
-    show
-        BehaviorPosition,
-        ChartBehavior,
-        ChartTitle,
-        ChartTitleDirection,
-        MaxWidthStrategy,
-        OutsideJustification,
-        TextStyleSpec;
-import 'package:flutter/widgets.dart' show hashValues;
+import 'package:charts_common/common.dart' as common show BehaviorPosition, ChartBehavior, ChartTitle, ChartTitleDirection, MaxWidthStrategy, OutsideJustification, TextStyleSpec;
 import 'package:meta/meta.dart' show immutable;
 
 import '../chart_behavior.dart' show ChartBehavior, GestureType;
@@ -144,19 +135,7 @@ class ChartTitle<D> extends ChartBehavior<D> {
   });
 
   @override
-  common.ChartTitle<D> createCommonBehavior() => new common.ChartTitle<D>(title,
-      behaviorPosition: behaviorPosition,
-      innerPadding: innerPadding,
-      layoutMinSize: layoutMinSize,
-      layoutPreferredSize: layoutPreferredSize,
-      outerPadding: outerPadding,
-      maxWidthStrategy: maxWidthStrategy,
-      titleDirection: titleDirection,
-      titleOutsideJustification: titleOutsideJustification,
-      titlePadding: titlePadding,
-      titleStyleSpec: titleStyleSpec,
-      subTitle: subTitle,
-      subTitleStyleSpec: subTitleStyleSpec);
+  common.ChartTitle<D> createCommonBehavior() => new common.ChartTitle<D>(title, behaviorPosition: behaviorPosition, innerPadding: innerPadding, layoutMinSize: layoutMinSize, layoutPreferredSize: layoutPreferredSize, outerPadding: outerPadding, maxWidthStrategy: maxWidthStrategy, titleDirection: titleDirection, titleOutsideJustification: titleOutsideJustification, titlePadding: titlePadding, titleStyleSpec: titleStyleSpec, subTitle: subTitle, subTitleStyleSpec: subTitleStyleSpec);
 
   @override
   void updateCommonBehavior(common.ChartBehavior commonBehavior) {}
@@ -166,37 +145,11 @@ class ChartTitle<D> extends ChartBehavior<D> {
 
   @override
   bool operator ==(Object o) {
-    return o is ChartTitle &&
-        behaviorPosition == o.behaviorPosition &&
-        layoutMinSize == o.layoutMinSize &&
-        layoutPreferredSize == o.layoutPreferredSize &&
-        maxWidthStrategy == o.maxWidthStrategy &&
-        title == o.title &&
-        titleDirection == o.titleDirection &&
-        titleOutsideJustification == o.titleOutsideJustification &&
-        titleStyleSpec == o.titleStyleSpec &&
-        subTitle == o.subTitle &&
-        subTitleStyleSpec == o.subTitleStyleSpec &&
-        innerPadding == o.innerPadding &&
-        titlePadding == o.titlePadding &&
-        outerPadding == o.outerPadding;
+    return o is ChartTitle && behaviorPosition == o.behaviorPosition && layoutMinSize == o.layoutMinSize && layoutPreferredSize == o.layoutPreferredSize && maxWidthStrategy == o.maxWidthStrategy && title == o.title && titleDirection == o.titleDirection && titleOutsideJustification == o.titleOutsideJustification && titleStyleSpec == o.titleStyleSpec && subTitle == o.subTitle && subTitleStyleSpec == o.subTitleStyleSpec && innerPadding == o.innerPadding && titlePadding == o.titlePadding && outerPadding == o.outerPadding;
   }
 
   @override
   int get hashCode {
-    return hashValues(
-        behaviorPosition,
-        layoutMinSize,
-        layoutPreferredSize,
-        maxWidthStrategy,
-        title,
-        titleDirection,
-        titleOutsideJustification,
-        titleStyleSpec,
-        subTitle,
-        subTitleStyleSpec,
-        innerPadding,
-        titlePadding,
-        outerPadding);
+    return Object.hash(behaviorPosition, layoutMinSize, layoutPreferredSize, maxWidthStrategy, title, titleDirection, titleOutsideJustification, titleStyleSpec, subTitle, subTitleStyleSpec, innerPadding, titlePadding, outerPadding);
   }
 }
